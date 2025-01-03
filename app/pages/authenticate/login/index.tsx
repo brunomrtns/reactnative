@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 
 import { useRouter } from "expo-router";
 import axios from "axios";
-import api from "@/app/utils/api";
+// import api from "@/app/utils/api";
 
 import { TextInput, Button, Text, ActivityIndicator } from "react-native-paper";
 
@@ -38,7 +38,7 @@ export default function LoginPage() {
     setDebugInfo(null);
 
     try {
-      const response = await api.post(
+      const response = await axios.post(
         `${CONSTANTS.AUTH.AUTH_SERVER}/authenticate`,
         {
           emailOrUsername,
