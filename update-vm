@@ -243,6 +243,7 @@ incus file pull "${INSTANCE_NAME}${LOG_VM_DIR}/build.log" "${LOG_LOCAL_DIR}" || 
 
 APK_PATH="${PROJECT_IN_VM_DIR}/android/app/build/outputs/apk/release/app-release.apk"
 echo "Copiando APK gerado de volta para o host..."
+mkdir -p "${PARENT_PATH}/compiled_apk"
 incus file pull "${INSTANCE_NAME}${APK_PATH}" "${PARENT_PATH}/compiled_apk/app-release.apk" || {
     echo \"Erro ao copiar o APK gerado para o host\"
     exit 1
