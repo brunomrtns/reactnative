@@ -13,9 +13,9 @@ import BadWordBr from "../../constants/bad-word/bad-word-br.json";
 
 import { Text, Button, TextInput, ActivityIndicator } from "react-native-paper";
 
-import { useStyles, getMarkdownStyles } from "./styles";
+import { useTheme } from "@/app/theme/ThemeProvider";
 
-import { useTheme } from "../../theme/ThemeProvider";
+import { useStyles, getMarkdownStyles } from "./styles";
 
 export default function AiResponse() {
   const { theme } = useTheme();

@@ -1,8 +1,11 @@
 import React from "react";
-import { Modal, Portal, Text, Button } from "react-native-paper";
-import { useTheme } from "@/app/theme/ThemeProvider";
-import { useStyles } from "./styles";
 import { useTranslation } from "react-i18next";
+
+import { Modal, Portal, Text, Button } from "react-native-paper";
+
+import { useTheme } from "@/app/theme/ThemeProvider";
+
+import { useStyles } from "./styles";
 
 type SessionExpiredModalProps = {
   visible: boolean;

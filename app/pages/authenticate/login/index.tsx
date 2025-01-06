@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 
 import { useRouter } from "expo-router";
 import axios from "axios";
-// import api from "@/app/utils/api";
 
 import { TextInput, Button, Text, ActivityIndicator } from "react-native-paper";
 

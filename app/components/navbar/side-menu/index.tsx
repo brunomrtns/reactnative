@@ -1,10 +1,14 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
+
 import { Drawer, IconButton, Divider } from "react-native-paper";
 import { View, Text, TouchableWithoutFeedback, Keyboard } from "react-native";
+
 import { useRouter } from "expo-router";
-import { useTranslation } from "react-i18next";
+
+import { useTheme } from "@/app/theme/ThemeProvider";
+
 import { useStyles } from "./styles";
-import { useTheme } from "../../../theme/ThemeProvider";
 
 export default function SideMenu({
   visible,

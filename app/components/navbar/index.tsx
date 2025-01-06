@@ -6,19 +6,16 @@ import { StackNavigationProp } from "@react-navigation/stack";
 
 import { useNavigation, useRouter } from "expo-router";
 
-import { useTheme } from "../../theme/ThemeProvider";
+import { useTheme } from "@/app/theme/ThemeProvider";
 
 import SideMenu from "./side-menu";
-
-import { useStyles } from "./styles";
 
 type HomeScreenNavigationProp = StackNavigationProp<any>;
 
 export default function Navbar({ showBackButton = false }) {
-  const { theme, toggleTheme, isDarkMode } = useTheme();
+  const { toggleTheme, isDarkMode } = useTheme();
   const { t } = useTranslation();
   const router = useRouter();
-  const styles = useStyles(theme);
   const navigation = useNavigation<HomeScreenNavigationProp>();
 
   const rotation = useRef(new Animated.Value(0)).current;

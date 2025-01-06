@@ -1,24 +1,31 @@
 import React, { useEffect } from "react";
 import { View, Alert } from "react-native";
-import { Text, TextInput, Button } from "react-native-paper";
-import { useForm, Controller } from "react-hook-form";
-import { useTheme } from "@/app/theme/ThemeProvider";
-import { useStyles } from "./styles";
 import { useTranslation } from "react-i18next";
+import { useForm, Controller } from "react-hook-form";
+
+import { Text, TextInput, Button } from "react-native-paper";
+
+import { useTheme } from "@/app/theme/ThemeProvider";
+
 import Navbar from "@/app/components/navbar";
 import SessionExpiredModal from "@/app/components/session-expired-modal";
+
 import useSessionExpired from "@/app/hooks/use-session-expired";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
+
 import {
   fetchUserData,
   updateUserData,
 } from "@/app/redux/actions/user-form-action";
+
 import {
   updateName,
   updateEmail,
   updatePassword,
   updateUsername,
 } from "@/app/redux/slices/user-form-slice";
+
+import { useStyles } from "./styles";
 
 const Account = () => {
   const { t } = useTranslation();
@@ -32,9 +39,6 @@ const Account = () => {
     email,
     oldPassword,
     newPassword,
-    isNameChanged,
-    isUsernameChanged,
-    isEmailChanged,
     initialName,
     initialUsername,
     initialEmail,
