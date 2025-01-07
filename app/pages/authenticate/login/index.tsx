@@ -38,7 +38,7 @@ export default function LoginPage() {
 
     try {
       const response = await axios.post(
-        `${CONSTANTS.AUTH.AUTH_SERVER}/authenticate`,
+        `${CONSTANTS.AUTH.SERVER}/authenticate`,
         {
           emailOrUsername,
           password,

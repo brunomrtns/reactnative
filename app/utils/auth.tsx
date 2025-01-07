@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const setAuthToken = async (token: string) => {
   try {
-    await AsyncStorage.setItem(CONSTANTS.AUTH.AUTH_TOKEN_KEY, token);
+    await AsyncStorage.setItem(CONSTANTS.AUTH.TOKEN_KEY, token);
   } catch (error) {
     console.error("Erro ao salvar token:", error);
   }
@@ -12,7 +12,7 @@ export const setAuthToken = async (token: string) => {
 
 export const getAuthToken = async (): Promise<string | null> => {
   try {
-    return await AsyncStorage.getItem(CONSTANTS.AUTH.AUTH_TOKEN_KEY);
+    return await AsyncStorage.getItem(CONSTANTS.AUTH.TOKEN_KEY);
   } catch (error) {
     console.error("Erro ao obter token:", error);
     return null;
@@ -21,7 +21,7 @@ export const getAuthToken = async (): Promise<string | null> => {
 
 export const clearAuthToken = async () => {
   try {
-    await AsyncStorage.removeItem(CONSTANTS.AUTH.AUTH_TOKEN_KEY);
+    await AsyncStorage.removeItem(CONSTANTS.AUTH.TOKEN_KEY);
   } catch (error) {
     console.error("Erro ao remover token:", error);
   }
@@ -46,7 +46,7 @@ export const validateToken = async (): Promise<boolean> => {
       }
 
       const response = await axios.post(
-        `${CONSTANTS.AUTH.AUTH_SERVER}/users/validate-token`,
+        `${CONSTANTS.AUTH.SERVER}/users/validate-token`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },

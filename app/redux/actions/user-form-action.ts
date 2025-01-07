@@ -1,16 +1,19 @@
 import axios from "axios";
 import { AppDispatch, RootState } from "../store";
+
 import {
   setInitialValues,
   syncWithSavedValues,
 } from "../slices/user-form-slice";
+
 import { getAuthToken } from "@/app/utils/auth";
+
 import { CONSTANTS } from "@/app/constants";
 
 export const fetchUserData = () => async (dispatch: AppDispatch) => {
   try {
     const token = await getAuthToken();
-    const response = await axios.get(`${CONSTANTS.AUTH.AUTH_SERVER}/users/me`, {
+    const response = await axios.get(`${CONSTANTS.AUTH.SERVER}/users/me`, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
@@ -42,7 +45,7 @@ export const updateUserData =
     try {
       if (isNameChanged) {
         await axios.put(
-          `${CONSTANTS.AUTH.AUTH_SERVER}/users/update-name`,
+          `${CONSTANTS.AUTH.SERVER}/users/update-name`,
           { name },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -51,7 +54,7 @@ export const updateUserData =
 
       if (isUsernameChanged) {
         await axios.put(
-          `${CONSTANTS.AUTH.AUTH_SERVER}/users/update-username`,
+          `${CONSTANTS.AUTH.SERVER}/users/update-username`,
           { username },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -60,7 +63,7 @@ export const updateUserData =
 
       if (isEmailChanged) {
         await axios.put(
-          `${CONSTANTS.AUTH.AUTH_SERVER}/users/update-email`,
+          `${CONSTANTS.AUTH.SERVER}/users/update-email`,
           { email },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -69,7 +72,7 @@ export const updateUserData =
 
       if (oldPassword && newPassword) {
         await axios.put(
-          `${CONSTANTS.AUTH.AUTH_SERVER}/users/update-password`,
+          `${CONSTANTS.AUTH.SERVER}/users/update-password`,
           { oldPassword, newPassword },
           { headers: { Authorization: `Bearer ${token}` } }
         );

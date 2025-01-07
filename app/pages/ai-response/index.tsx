@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, Image } from "react-native";
 import { useTranslation } from "react-i18next";
 import Markdown from "react-native-markdown-display";
 
@@ -28,6 +28,7 @@ export default function AiResponse() {
   const [question, setQuestion] = useState<string>("");
   const [aiResponse, setAIResponse] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+  const [generatedImages, setGeneratedImages] = useState<string[]>([]);
 
   filter.addWords(...BadWordBr.words);
 
@@ -36,6 +37,7 @@ export default function AiResponse() {
 
     setLoading(true);
     setAIResponse(null);
+    setGeneratedImages([]); // Limpa imagens ao enviar uma nova pergunta
 
     try {
       if (filter.isProfane(question)) {
@@ -45,7 +47,7 @@ export default function AiResponse() {
       const processedQuestion =
         t(CONSTANTS.AI_RESPONSE.START_PROMPT) + question;
 
-      const URL_WITH_KEY = `${CONSTANTS.AI_RESPONSE.API_URLS.URL_API_GOOGLE_GEMINI}?key=${CONSTANTS.AI_RESPONSE.API_KEYS.API_KEY_GOOGLE_GEMINI}`;
+      const URL_WITH_KEY = `${CONSTANTS.AI_RESPONSE.API_URLS.GOOGLE_GEMINI}?key=${CONSTANTS.AI_RESPONSE.API_KEYS.GOOGLE_GEMINI}`;
 
       const requestData = {
         contents: [
@@ -65,7 +67,11 @@ export default function AiResponse() {
         aiResponseRaw.data.candidates?.[0]?.content?.parts?.[0]?.text ||
         "No response.";
 
+      const imageResults = aiResponseRaw.data.candidates?.[0]?.images || [];
+      const imageUrls = imageResults.map((img: any) => img.url); // Extraia URLs das imagens
+
       setAIResponse(fullResponse);
+      setGeneratedImages(imageUrls);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Erro com Axios:", error.response?.data || error.message);
@@ -113,6 +119,15 @@ export default function AiResponse() {
               {`${t("aiResponse.response")}: \n\n${aiResponse}`}
             </Markdown>
           )}
+
+          {generatedImages.map((image, index) => (
+            <Image
+              key={index}
+              source={{ uri: image }}
+              style={{ width: 300, height: 300, marginVertical: 10 }}
+              resizeMode="contain"
+            />
+          ))}
         </ScrollView>
 
         <Button

@@ -36,7 +36,7 @@ export default function CreateUserPage() {
 
     try {
       const response = await axios.post(
-        `${CONSTANTS.AUTH.AUTH_SERVER}/users/create`,
+        `${CONSTANTS.AUTH.SERVER}/users/create`,
         {
           name,
           username,

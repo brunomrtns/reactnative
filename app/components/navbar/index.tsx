@@ -1,7 +1,9 @@
 import React, { useRef, useState } from "react";
 import { Animated } from "react-native";
 import { useTranslation } from "react-i18next";
+
 import { Appbar, IconButton } from "react-native-paper";
+
 import { StackNavigationProp } from "@react-navigation/stack";
 
 import { useNavigation, useRouter } from "expo-router";
