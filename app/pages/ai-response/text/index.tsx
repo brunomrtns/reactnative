@@ -7,9 +7,9 @@ import axios from "axios";
 import { useRouter } from "expo-router";
 import { Filter } from "bad-words";
 
-import { CONSTANTS } from "../../utils/constants";
-import Navbar from "../../components/navbar";
-import BadWordBr from "../../utils/constants/bad-word/bad-word-br.json";
+import { CONSTANTS } from "../../../utils/constants";
+import Navbar from "../../../components/navbar";
+import BadWordBr from "../../../utils/constants/bad-word/bad-word-br.json";
 
 import { Text, Button, TextInput, ActivityIndicator } from "react-native-paper";
 
@@ -17,7 +17,7 @@ import { useTheme } from "@/app/theme/ThemeProvider";
 
 import { useStyles, getMarkdownStyles } from "./styles";
 
-export default function AiResponse() {
+export default function AiResponseText() {
   const { theme } = useTheme();
   const router = useRouter();
   const styles = useStyles(theme);
@@ -39,7 +39,7 @@ export default function AiResponse() {
 
     try {
       if (filter.isProfane(question)) {
-        setAIResponse(t("aiResponse.badWord"));
+        setAIResponse(t("aiResponse.text.badWord"));
         return;
       }
       const processedQuestion =
@@ -84,11 +84,11 @@ export default function AiResponse() {
     <View style={styles.container}>
       <Navbar showBackButton />
       <View style={styles.content}>
-        <Text>{t("aiResponse.askAnything")} 🤖</Text>
+        <Text>{t("aiResponse.text.askAnything")} 🤖</Text>
 
         <TextInput
           mode="outlined"
-          label={t("aiResponse.enterYourQuestion")}
+          label={t("aiResponse.text.enterYourQuestion")}
           value={question}
           onChangeText={setQuestion}
           style={styles.input}
@@ -101,7 +101,9 @@ export default function AiResponse() {
           style={styles.button}
         >
           <Text style={styles.buttonText}>
-            {loading ? t("aiResponse.consulting") : t("aiResponse.toAsk")}
+            {loading
+              ? t("aiResponse.text.consulting")
+              : t("aiResponse.text.toAsk")}
           </Text>
         </Button>
 
@@ -110,7 +112,7 @@ export default function AiResponse() {
         <ScrollView style={styles.aiResponseMarked}>
           {aiResponse && (
             <Markdown style={markdownStyles}>
-              {`${t("aiResponse.response")}: \n\n${aiResponse}`}
+              {`${t("aiResponse.text.response")}: \n\n${aiResponse}`}
             </Markdown>
           )}
         </ScrollView>

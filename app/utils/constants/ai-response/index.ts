@@ -9,6 +9,8 @@ const API_URLS = {
     "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent",
   FALCON_7B_INSTRUCT:
     "https://api-inference.huggingface.co/models/tiiuae/falcon-7b-instruct",
+  DIFFUSION:
+    "https://api-inference.huggingface.co/models/CompVis/stable-diffusion-v1-4",
 };
 
 export const AI_RESPONSE = {

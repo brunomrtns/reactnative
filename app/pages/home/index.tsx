@@ -38,10 +38,20 @@ export default function Home() {
           <Text>{t("homeScreen.aiResponse")}</Text>
           <Button
             mode="contained"
-            onPress={() => router.push("/pages/ai-response")}
+            onPress={() => router.push("/pages/ai-response/text")}
             style={styles.button}
           >
-            <Text style={styles.labelButton}>{t("aiResponse.askMe")}</Text>
+            <Text style={styles.labelButton}>{t("aiResponse.text.askMe")}</Text>
+          </Button>
+          <View style={styles.spacer} />
+          <Button
+            mode="contained"
+            onPress={() => router.push("/pages/ai-response/image")}
+            style={styles.button}
+          >
+            <Text style={styles.labelButton}>
+              {t("aiResponse.image.askMe")}
+            </Text>
           </Button>
           <View style={styles.spacer} />
           <Button

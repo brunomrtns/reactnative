@@ -9,7 +9,7 @@ export const useStyles = (
   StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: theme.colors.background, // Fundo principal
+      backgroundColor: theme.colors.background,
     },
     content: {
       flex: 1,
@@ -21,17 +21,17 @@ export const useStyles = (
       fontSize: 24,
       fontWeight: "bold",
       marginBottom: 20,
-      color: theme.customColors.text, // Texto principal
+      color: theme.customColors.text,
     },
     input: {
       marginTop: 10,
-      backgroundColor: theme.customColors.inputBackground, // Fundo do input
+      backgroundColor: theme.customColors.inputBackground,
       width: "100%",
       minHeight: 48,
     },
     button: {
       marginVertical: 10,
-      backgroundColor: theme.customColors.buttonBackground, // Fundo do botão
+      backgroundColor: theme.customColors.buttonBackground,
       borderRadius: 5,
     },
     buttonText: {
@@ -55,8 +55,8 @@ export const getMarkdownStyles = (
   theme: MD3Theme & { customColors: Record<string, string> }
 ): NamedStyles<any> => ({
   body: {
-    backgroundColor: theme.colors.background || "#ffffff", // Fundo do texto
-    color: theme.colors.onBackground || "#000000", // Cor do texto
+    backgroundColor: theme.colors.background || "#ffffff",
+    color: theme.colors.onBackground || "#000000",
   },
   heading1: {
     color: theme.colors.primary || "#333333",
@@ -67,9 +67,9 @@ export const getMarkdownStyles = (
     color: theme.colors.onBackground || "#222222",
   },
   code_block: {
-    backgroundColor: theme.customColors.codeBlockBackground, // Fundo do bloco
-    color: theme.customColors.codeBlockText, // Texto do bloco
-    borderColor: theme.customColors.codeBlockBorder, // Borda
+    backgroundColor: theme.customColors.codeBlockBackground,
+    color: theme.customColors.codeBlockText,
+    borderColor: theme.customColors.codeBlockBorder,
     borderWidth: 1,
     padding: 8,
     borderRadius: 4,
