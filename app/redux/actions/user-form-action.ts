@@ -8,7 +8,7 @@ import {
 
 import { getAuthToken } from "@/app/utils/auth";
 
-import { CONSTANTS } from "@/app/constants";
+import { CONSTANTS } from "@/app/utils/constants";
 
 export const fetchUserData = () => async (dispatch: AppDispatch) => {
   try {

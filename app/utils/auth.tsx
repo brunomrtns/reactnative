@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { CONSTANTS } from "../constants";
+import { CONSTANTS } from "./constants";
 import axios from "axios";
 
 export const setAuthToken = async (token: string) => {

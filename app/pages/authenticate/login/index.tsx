@@ -10,7 +10,7 @@ import { TextInput, Button, Text, ActivityIndicator } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { useTheme } from "@/app/theme/ThemeProvider";
-import { CONSTANTS } from "@/app/constants";
+import { CONSTANTS } from "@/app/utils/constants";
 
 import { useStyles } from "../styles";
 

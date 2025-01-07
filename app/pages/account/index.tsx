@@ -10,7 +10,7 @@ import { useTheme } from "@/app/theme/ThemeProvider";
 import Navbar from "@/app/components/navbar";
 import SessionExpiredModal from "@/app/components/session-expired-modal";
 
-import useSessionExpired from "@/app/hooks/use-session-expired";
+import useSessionExpired from "@/app/utils/hooks/use-session-expired";
 import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
 
 import {

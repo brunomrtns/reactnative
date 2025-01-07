@@ -7,9 +7,9 @@ import axios from "axios";
 import { useRouter } from "expo-router";
 import { Filter } from "bad-words";
 
-import { CONSTANTS } from "../../constants";
+import { CONSTANTS } from "../../utils/constants";
 import Navbar from "../../components/navbar";
-import BadWordBr from "../../constants/bad-word/bad-word-br.json";
+import BadWordBr from "../../utils/constants/bad-word/bad-word-br.json";
 
 import { Text, Button, TextInput, ActivityIndicator } from "react-native-paper";
 
@@ -28,7 +28,6 @@ export default function AiResponse() {
   const [question, setQuestion] = useState<string>("");
   const [aiResponse, setAIResponse] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  const [generatedImages, setGeneratedImages] = useState<string[]>([]);
 
   filter.addWords(...BadWordBr.words);
 
@@ -37,7 +36,6 @@ export default function AiResponse() {
 
     setLoading(true);
     setAIResponse(null);
-    setGeneratedImages([]); // Limpa imagens ao enviar uma nova pergunta
 
     try {
       if (filter.isProfane(question)) {
@@ -67,11 +65,7 @@ export default function AiResponse() {
         aiResponseRaw.data.candidates?.[0]?.content?.parts?.[0]?.text ||
         "No response.";
 
-      const imageResults = aiResponseRaw.data.candidates?.[0]?.images || [];
-      const imageUrls = imageResults.map((img: any) => img.url); // Extraia URLs das imagens
-
       setAIResponse(fullResponse);
-      setGeneratedImages(imageUrls);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error("Erro com Axios:", error.response?.data || error.message);
@@ -119,15 +113,6 @@ export default function AiResponse() {
               {`${t("aiResponse.response")}: \n\n${aiResponse}`}
             </Markdown>
           )}
-
-          {generatedImages.map((image, index) => (
-            <Image
-              key={index}
-              source={{ uri: image }}
-              style={{ width: 300, height: 300, marginVertical: 10 }}
-              resizeMode="contain"
-            />
-          ))}
         </ScrollView>
 
         <Button

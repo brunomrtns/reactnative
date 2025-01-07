@@ -6,7 +6,7 @@ import { useRouter } from "expo-router";
 import axios from "axios";
 
 import { TextInput, Button, Text, ActivityIndicator } from "react-native-paper";
-import { CONSTANTS } from "@/app/constants";
+import { CONSTANTS } from "@/app/utils/constants";
 
 import { useTheme } from "../../../theme/ThemeProvider";
 
