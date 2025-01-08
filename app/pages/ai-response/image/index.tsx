@@ -3,13 +3,10 @@ import { View, ScrollView, Image } from "react-native";
 import { useTranslation } from "react-i18next";
 
 import axios from "axios";
-import { useRouter } from "expo-router";
-import { Filter } from "bad-words";
+import { Buffer } from "buffer";
 
 import { CONSTANTS } from "../../../utils/constants";
 import Navbar from "../../../components/navbar";
-import BadWordBr from "../../../utils/constants/bad-word/bad-word-br.json";
-
 import { Text, Button, TextInput, ActivityIndicator } from "react-native-paper";
 
 import { useTheme } from "@/app/theme/ThemeProvider";
@@ -18,16 +15,70 @@ import { useStyles } from "./styles";
 
 export default function AiResponseImage() {
   const { theme } = useTheme();
-  const router = useRouter();
   const styles = useStyles(theme);
   const { t } = useTranslation();
-  const filter = new Filter();
 
   const [prompt, setPrompt] = useState<string>("");
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  filter.addWords(...BadWordBr.words);
+  const generateImageWithRetry = async (
+    prompt: string,
+    retries = 5,
+    delay = 60
+  ) => {
+    for (let attempt = 1; attempt <= retries; attempt++) {
+      try {
+        console.log(`Tentativa ${attempt} de ${retries}`);
+
+        const response = await axios.post(
+          `${CONSTANTS.AI_RESPONSE.API_URLS.DIFFUSION}`,
+          { inputs: prompt },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${CONSTANTS.AI_RESPONSE.API_KEYS.HUGGINGFACE}`,
+            },
+            responseType: "arraybuffer",
+          }
+        );
+
+        if (response.status === 503) {
+          const { error, estimated_time } = response.data;
+          console.warn(
+            `Modelo ainda está carregando (${error}). Tentando novamente em ${
+              estimated_time || delay
+            } segundos...`
+          );
+          await new Promise((resolve) =>
+            setTimeout(resolve, (estimated_time || delay) * 1000)
+          );
+          continue;
+        }
+
+        if (response.headers["content-type"] === "image/jpeg") {
+          const base64Image = `data:image/jpeg;base64,${Buffer.from(
+            response.data,
+            "binary"
+          ).toString("base64")}`;
+          return base64Image;
+        }
+
+        throw new Error("Resposta inesperada. Tipo de conteúdo inválido.");
+      } catch (error) {
+        console.error(
+          `Erro na tentativa ${attempt}:`,
+          error instanceof Error ? error.message : String(error)
+        );
+
+        if (attempt === retries) {
+          throw new Error("Falha após múltiplas tentativas.");
+        }
+
+        await new Promise((resolve) => setTimeout(resolve, delay * 1000));
+      }
+    }
+  };
 
   const handleGenerateImage = async () => {
     if (!prompt.trim()) return;
@@ -36,38 +87,16 @@ export default function AiResponseImage() {
     setImageUrl(null);
 
     try {
-      if (filter.isProfane(prompt)) {
-        setImageUrl(null);
-        return;
-      }
-
-      const URL_WITH_KEY = `${CONSTANTS.AI_RESPONSE.API_URLS.DIFFUSION}`;
-
-      const requestData = {
-        inputs: prompt,
-      };
-
-      const response = await axios.post(URL_WITH_KEY, requestData, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${CONSTANTS.AI_RESPONSE.API_KEYS.HUGGINGFACE}`,
-        },
-      });
-
-      const generatedImage = response.data.image;
-
-      if (generatedImage) {
-        setImageUrl(generatedImage);
-      } else {
-        setImageUrl(null);
-      }
+      const base64Image = await generateImageWithRetry(prompt);
+      setImageUrl(base64Image ?? null);
     } catch (error) {
-      console.error("Erro ao gerar imagem:", error);
+      const errorMessage =
+        error instanceof Error ? error.message : String(error);
+      console.error("Erro ao gerar imagem:", errorMessage);
       setImageUrl(null);
-    } finally {
-      setLoading(false);
     }
   };
+  console.log("Image URI:", "data:image/jpeg;base64," + imageUrl);
 
   return (
     <View style={styles.container}>
@@ -101,20 +130,15 @@ export default function AiResponseImage() {
         <ScrollView contentContainerStyle={styles.imageContainer}>
           {imageUrl && (
             <Image
-              source={{ uri: imageUrl }}
               style={styles.generatedImage}
+              source={{ uri: "data:image/jpeg;base64," + imageUrl }}
               resizeMode="contain"
+              onError={(e) =>
+                console.error("Image load error:", e.nativeEvent.error)
+              }
             />
           )}
         </ScrollView>
-
-        <Button
-          mode="outlined"
-          onPress={() => router.back()}
-          style={styles.button}
-        >
-          {t("back")}
-        </Button>
       </View>
     </View>
   );
