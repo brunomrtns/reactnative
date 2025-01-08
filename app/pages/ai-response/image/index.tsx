@@ -90,9 +90,10 @@ export default function AiResponseImage() {
       const base64Image = await generateImageWithRetry(prompt);
       setImageUrl(base64Image ?? null);
     } catch (error) {
-      const errorMessage =
-        error instanceof Error ? error.message : String(error);
-      console.error("Erro ao gerar imagem:", errorMessage);
+      console.error(
+        "Erro ao gerar imagem:",
+        error instanceof Error ? error.message : String(error)
+      );
       setImageUrl(null);
     }
   };
