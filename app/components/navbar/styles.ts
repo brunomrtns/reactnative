@@ -33,7 +33,7 @@ export const useStyles = (theme: MD3Theme) => {
       marginLeft: 12,
     },
     header: {
-      elevation: 4, // Adiciona sombra
+      elevation: 4,
     },
     sideMenuOverlay: {
       position: "absolute",

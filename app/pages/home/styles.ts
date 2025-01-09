@@ -19,10 +19,10 @@ export const useStyles = (
       padding: 16,
     },
     title: {
-      fontSize: theme.customTypography.title.fontSize, // Tamanho dinâmico
-      fontWeight: theme.customTypography.title.fontWeight, // Peso dinâmico
+      fontSize: theme.customTypography.title.fontSize,
+      fontWeight: theme.customTypography.title.fontWeight,
       marginBottom: 10,
-      color: theme.customColors.titleText, // Cor personalizada para títulos
+      color: theme.customColors.titleText,
     },
     text: {
       fontSize: 18,

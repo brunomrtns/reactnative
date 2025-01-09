@@ -63,7 +63,7 @@ export function useImageGenerator() {
         await new Promise((resolve) => setTimeout(resolve, delay * 1000));
       }
     }
-    return null; // Retorna null caso falhem todas as tentativas
+    return null;
   };
 
   const handleGenerateImage = async (prompt: string) => {

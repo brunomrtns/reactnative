@@ -35,7 +35,7 @@ export const useStyles = (
     },
     title: {
       color: theme.colors.onBackground,
-      fontSize: theme.customTypography.title.fontSize, // Tamanho dinâmico
+      fontSize: theme.customTypography.title.fontSize,
       fontWeight: theme.customTypography.title.fontWeight,
     },
     drawerItem: {

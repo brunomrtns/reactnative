@@ -9,7 +9,7 @@ export const useStyles = (
   StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: theme.colors.background, // Fundo principal
+      backgroundColor: theme.colors.background,
     },
     content: {
       flex: 1,
@@ -21,17 +21,17 @@ export const useStyles = (
       fontSize: 24,
       fontWeight: "bold",
       marginBottom: 20,
-      color: theme.customColors.text, // Texto principal
+      color: theme.customColors.text,
     },
     input: {
       marginTop: 10,
-      backgroundColor: theme.customColors.inputBackground, // Fundo do input
+      backgroundColor: theme.customColors.inputBackground,
       width: "100%",
       minHeight: 48,
     },
     button: {
       marginVertical: 10,
-      backgroundColor: theme.customColors.buttonBackground, // Fundo do botão
+      backgroundColor: theme.customColors.buttonBackground,
       borderRadius: 5,
     },
     buttonText: {
@@ -46,14 +46,14 @@ export const useStyles = (
       flex: 1,
       marginTop: 20,
       width: "100%",
-      backgroundColor: theme.colors.background, // Fundo da área de imagens
+      backgroundColor: theme.colors.background,
       borderRadius: 5,
       justifyContent: "center",
       alignItems: "center",
     },
     generatedImage: {
       width: "100%",
-      height: 300, // Altura máxima da imagem gerada
+      height: 300,
       borderRadius: 5,
       marginVertical: 10,
     },

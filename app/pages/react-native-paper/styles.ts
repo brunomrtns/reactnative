@@ -7,7 +7,7 @@ export const useStyles = (
   StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: theme.colors.background, // Fundo dinâmico
+      backgroundColor: theme.colors.background,
     },
     scrollView: {
       flex: 1,
@@ -17,15 +17,15 @@ export const useStyles = (
     },
     card: {
       marginBottom: 20,
-      backgroundColor: theme.colors.surface, // Fundo do card
+      backgroundColor: theme.colors.surface,
     },
     title: {
       marginBottom: 10,
-      color: theme.customColors.text, // Texto dinâmico
+      color: theme.customColors.text,
     },
     input: {
       marginTop: 10,
-      backgroundColor: theme.customColors.inputBackground, // Fundo do input
+      backgroundColor: theme.customColors.inputBackground,
     },
     row: {
       flexDirection: "row",
@@ -34,24 +34,24 @@ export const useStyles = (
     },
     text: {
       marginLeft: 10,
-      color: theme.customColors.text, // Texto dinâmico
+      color: theme.customColors.text,
     },
     divider: {
       marginVertical: 10,
-      backgroundColor: theme.colors.onSurface, // Cor da linha divisória
+      backgroundColor: theme.colors.onSurface,
     },
     fab: {
-      position: "absolute", // Faz o FAB flutuar
-      bottom: 20, // Distância da parte inferior
-      right: 20, // Distância da lateral direita
+      position: "absolute",
+      bottom: 20,
+      right: 20,
     },
     button: {
       marginTop: 16,
-      backgroundColor: theme.colors.primary, // Fundo do botão dinâmico
+      backgroundColor: theme.colors.primary,
       borderRadius: 8,
     },
     buttonText: {
-      color: theme.colors.onPrimary, // Texto do botão
+      color: theme.colors.onPrimary,
       fontWeight: "600",
     },
   });

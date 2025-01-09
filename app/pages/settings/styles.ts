@@ -14,7 +14,7 @@ export const useStyles = (
       backgroundColor: theme.colors.background,
     },
     header: {
-      fontSize: theme.customTypography.title.fontSize, // Tamanho dinâmico
+      fontSize: theme.customTypography.title.fontSize,
       fontWeight: theme.customTypography.title.fontWeight,
       marginBottom: 16,
       color: theme.customColors.titleText,
