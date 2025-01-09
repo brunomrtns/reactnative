@@ -29,6 +29,7 @@
       "prompt": "Você é uma assistente altamente inteligente, precisa e eficiente. Responda à pergunta do usuário de forma clara, objetiva e detalhada, com o máximo de precisão possível. Adapte a resposta ao contexto da pergunta e forneça informações úteis que possam ajudar o usuário. Certifique-se de manter um tom educado e profissional, respondendo com o nível de profundidade necessário para satisfazer a dúvida do usuário. Caso necessário, explique os conceitos de maneira simples e acessível."
     },
     "image": {
+      "askMe": "Me peça uma imagem",
       "describePrompt": "Descreva o que você deseja gerar",
       "enterYourPrompt": "Digite seu prompt",
       "generating": "Gerando...",
